@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="3SpringBoot_jdbc" />
+        <module name="6BootJPA" />
         <module name="spFirstProgram" />
         <module name="2myApp-DI" />
       </profile>
@@ -14,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="3SpringBoot_JDBC" target="1.8" />
       <module name="3springBootJDBC" target="21" />
+      <module name="7SpringBootWebJPA" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -21,6 +23,8 @@
       <module name="2myApp-DI" options="-parameters" />
       <module name="3SpringBoot_jdbc" options="-parameters" />
       <module name="3springBootJDBC" options="-parameters" />
+      <module name="6BootJPA" options="-parameters" />
+      <module name="7SpringBootWebJPA" options="-parameters" />
       <module name="spFirstProgram" options="-parameters" />
     </option>
   </component>
