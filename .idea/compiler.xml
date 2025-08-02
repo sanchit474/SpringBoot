@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="7SpringBootWebJPA" />
         <module name="3SpringBoot_jdbc" />
         <module name="6BootJPA" />
         <module name="spFirstProgram" />
@@ -15,7 +16,6 @@
     <bytecodeTargetLevel>
       <module name="3SpringBoot_JDBC" target="1.8" />
       <module name="3springBootJDBC" target="21" />
-      <module name="7SpringBootWebJPA" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
