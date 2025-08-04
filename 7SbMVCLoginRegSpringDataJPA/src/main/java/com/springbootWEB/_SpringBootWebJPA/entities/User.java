@@ -1,9 +1,5 @@
 package com.springbootWEB._SpringBootWebJPA.entities;
-
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-
 @Entity
 @Table
 public class User {

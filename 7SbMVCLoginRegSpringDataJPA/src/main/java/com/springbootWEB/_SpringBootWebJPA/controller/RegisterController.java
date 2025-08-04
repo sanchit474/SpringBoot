@@ -5,10 +5,7 @@ import com.springbootWEB._SpringBootWebJPA.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegisterController {
@@ -23,15 +20,8 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user) {
        userServices.userRegister(user);
-        return "redirect:/login";
+        return "login";
     }
 
-    @GetMapping("/profile")
-    public String profilePage(@RequestParam String name, @RequestParam String email,
-                              @RequestParam String phoneNo, Model model) {
-        model.addAttribute("name", name);
-        model.addAttribute("email", email);
-        model.addAttribute("phoneNo", phoneNo);
-        return "profile";
-    }
+
 }
