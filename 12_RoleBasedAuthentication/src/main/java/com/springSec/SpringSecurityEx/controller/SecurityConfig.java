@@ -3,6 +3,7 @@ package com.springSec.SpringSecurityEx.controller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
@@ -16,13 +17,13 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
-    //Define in memory user
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user1 = User.withUsername("user1")
-                .password("{noop}password")
+        UserDetails user = User.withUsername("user")
+                .password("{noop}user123")   // {noop} = no encoding (testing only)
                 .roles("USER")
                 .build();
 
@@ -30,20 +31,19 @@ public class SecurityConfig {
                 .password("{noop}admin123")
                 .roles("ADMIN")
                 .build();
-        return new InMemoryUserDetailsManager(user1, admin);
+
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
+    // Security filter chain
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests((requests) -> {
-            ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)requests.anyRequest())
-                    .authenticated();
-        });
-
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//        http.formLogin(Customizer.withDefaults());
-        http.httpBasic(Customizer.withDefaults());
-        return (SecurityFilterChain)http.build();
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/public").permitAll()   // Public endpoint
+                        .anyRequest().authenticated()             // Everything else requires login
+                )
+                .httpBasic(); // Basic Authentication
+        return http.build();
     }
 }
